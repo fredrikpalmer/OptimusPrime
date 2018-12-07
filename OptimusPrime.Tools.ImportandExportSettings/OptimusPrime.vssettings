@@ -1,0 +1,29 @@
+<UserSettings>
+  <ApplicationIdentity version="15.0"/>
+  <ToolsOptions/>
+  <Category name="Environment_Group" RegisteredName="Environment_Group">
+    <Category name="Environment_ExternalTools" Category="{E8FAE9E8-FBA2-4474-B134-AB0FFCFB291D}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_ExternalTools" PackageName="Visual Studio Environment Package">
+      <ExternalTools>
+        <UserCreatedTool>
+          <Arguments></Arguments>
+          <CloseOnExit>true</CloseOnExit>
+          <Command>C:\Program Files\OptimusPrime\optimusprime.exe</Command>
+          <Index>1</Index>
+          <InitialDirectory>C:\Program Files\OptimusPrime\</InitialDirectory>
+          <IsGUIapp>false</IsGUIapp>
+          <NameID>0</NameID>
+          <Package>{00000000-0000-0000-0000-000000000000}</Package>
+          <PromptForArguments>true</PromptForArguments>
+          <SaveAllDocs>true</SaveAllDocs>
+          <Title>optimusprime</Title>
+          <Unicode>false</Unicode>
+          <UseOutputWindow>true</UseOutputWindow>
+          <UseTaskList>false</UseTaskList>
+        </UserCreatedTool>
+        <ModifyRegisteredTool SourceKeyName="Error Loo&amp;kup">
+          <Index>3</Index>
+        </ModifyRegisteredTool>
+      </ExternalTools>
+    </Category>
+  </Category>
+</UserSettings>
