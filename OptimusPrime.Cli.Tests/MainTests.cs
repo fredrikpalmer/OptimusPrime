@@ -13,17 +13,20 @@ namespace OptimusPrime.Cli.Tests
     [TestFixture]
     public class MainTests
     {
+        private Mock<ILogger> _loggerMock;
         private Mock<IMsBuildFileInfoService> _fileInfoServiceMock;
         private Mock<IProcessor> _processorMock;
-        private Mock<IApplicationConfiguration> _configuration;
+        private Mock<IApplicationConfiguration> _configurationMock;
 
         [SetUp]
         public void SetUp()
         {
-            _configuration = new Mock<IApplicationConfiguration>();
-            _configuration.Setup(x => x.GetValue("MSBuildPath")).Returns("msbuild.exe");
-            _configuration.Setup(x => x.GetValue("MSBuildFileName")).Returns("optimusprime.targets");
-            _configuration.Setup(x => x.GetValue("MSBuildTargetName")).Returns("RunOptimusPrime");
+            _loggerMock = new Mock<ILogger>();
+
+            _configurationMock = new Mock<IApplicationConfiguration>();
+            _configurationMock.Setup(x => x.GetValue("MSBuildPath")).Returns("msbuild.exe");
+            _configurationMock.Setup(x => x.GetValue("MSBuildFileName")).Returns("optimusprime.targets");
+            _configurationMock.Setup(x => x.GetValue("MSBuildTargetName")).Returns("RunOptimusPrime");
 
             _fileInfoServiceMock = new Mock<IMsBuildFileInfoService>();
             _fileInfoServiceMock.Setup(x => x.GetAllFileInfo(It.IsAny<CommandOptions>())).Returns(GetAllFileInfo());
@@ -38,9 +41,13 @@ namespace OptimusPrime.Cli.Tests
             _processorMock.Setup(x => x.Start(It.IsAny<string>(), It.IsAny<string>()))
                 .Callback<string, string>((x, y) => actualExecutions.Add($"{x} {Uri.UnescapeDataString(y)}"));
 
-            Program.Configuration = _configuration.Object;
-            Program.FileInfoService = _fileInfoServiceMock.Object;
-            Program.Processor = _processorMock.Object;
+            Program.InitializerAction = ctx =>
+            {
+                ctx.UseLogger(_loggerMock.Object);
+                ctx.UseConfiguration(_configurationMock.Object);
+                ctx.UseFileInfoService(_fileInfoServiceMock.Object);
+                ctx.UseProcessor(_processorMock.Object);
+            };
 
             Program.Main(new[]
             {

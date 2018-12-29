@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationContext.cs" />
     <Compile Include="Commands\DefaultProcessor.cs" />
     <Compile Include="Commands\IProcessor.cs" />
     <Compile Include="Commands\Options\ICommandOptionItem.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Config\IApplicationConfiguration.cs" />
     <Compile Include="Constants\ApplicationConstants.cs" />
     <Compile Include="Helpers\MsBuildFileInfoService.cs" />
+    <Compile Include="IApplicationContextInitializer.cs" />
     <Compile Include="ICommandResolver.cs" />
     <Compile Include="Helpers\MsBuildCommandBuilder.cs" />
     <Compile Include="Commands\MsBuildTransformCommand.cs" />
